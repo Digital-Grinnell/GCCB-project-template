@@ -1,3 +1,9 @@
+# Digital-Grinnell/GCCB-project-template
+
+This project is an instance of the [Digital-Grinnell/collectionbuilder-csv](https://github.com/Digital-Grinnell/collectionbuilder-csv) template project.
+
+> **This repo should be the basis for ALL (including projects with oral histories!) GC CB projects of the future.**  ~~Note that there is a separate GC template repo for Oral History projects because that's the way the CollectionBuilder folks have structured the underlying code.~~  
+
 # Digital-Grinnell/collectionbuilder-csv
 
 This is a `fork` of [CollectionBuilder/collectionbuilder-csv](https://github.com/CollectionBuilder/collectionbuilder-csv) with added GC-specific additions from Mark M., Libby C., and others.  
@@ -77,7 +83,7 @@ jobs:
 
 Following the aforementioned procedure eventually produced the site https://victorious-sea-07a73ff10.2.azurestaticapps.net.
 
-This workflow uses GitHub Actions to deploy and you can see the status of deployment at https://github.com/Digital-Grinnell/collectionbuilder-csv/actions.
+This workflow uses GitHub Actions to deploy and you can see the status of deployment at https://github.com/Digital-Grinnell/GCCB-project-template/actions.
 
 > Note that pushing changes to the `main` branch of this repository will automatically re-build https://victorious-sea-07a73ff10.2.azurestaticapps.net/!  
 
