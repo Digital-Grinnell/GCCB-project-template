@@ -1,6 +1,7 @@
 # Digital-Grinnell/GCCB-project-template
 
-This project is an instance of the [Digital-Grinnell/collectionbuilder-csv](https://github.com/Digital-Grinnell/collectionbuilder-csv) template project.
+This project is an instance of the [Digital-Grinnell/collectionbuilder-csv](https://github.com/Digital-Grinnell/collectionbuilder-csv) template project.  On December 10 I set an Azure environment variable that should yield dates/times in America/Chicago timezone (TZ).  
+
 
 > **This repo should be the basis for ALL (including projects with oral histories!) GC CB projects of the future.**  ~~Note that there is a separate GC template repo for Oral History projects because that's the way the CollectionBuilder folks have structured the underlying code.~~  
 
