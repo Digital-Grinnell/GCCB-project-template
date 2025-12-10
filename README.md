@@ -4,6 +4,11 @@ This project is an instance of the [Digital-Grinnell/collectionbuilder-csv](http
 
 > **This repo should be the basis for ALL (including projects with oral histories!) GC CB projects of the future.**  ~~Note that there is a separate GC template repo for Oral History projects because that's the way the CollectionBuilder folks have structured the underlying code.~~  
 
+## Deployment
+
+This template project is deployed to https://gentle-ground-0283de21e.3.azurestaticapps.net with each successful push to GitHub. 
+
+
 # Digital-Grinnell/collectionbuilder-csv
 
 This is a `fork` of [CollectionBuilder/collectionbuilder-csv](https://github.com/CollectionBuilder/collectionbuilder-csv) with added GC-specific additions from Mark M., Libby C., and others.  
