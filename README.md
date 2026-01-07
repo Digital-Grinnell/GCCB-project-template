@@ -7,7 +7,11 @@ This project is an instance of the [Digital-Grinnell/collectionbuilder-csv](http
 
 ## Deployment
 
-This template project is deployed to https://gentle-ground-0283de21e.3.azurestaticapps.net with each successful push to GitHub. 
+This template project is deployed to https://gentle-ground-0283de21e.3.azurestaticapps.net with each successful push to GitHub.
+
+## Documentation
+
+- [MP3 Range Request Fix - Audio Seeking in Chrome](docs/mp3-range-request-fix.md) - Solutions for timestamp seeking issues with audio files 
 
 
 # Digital-Grinnell/collectionbuilder-csv
