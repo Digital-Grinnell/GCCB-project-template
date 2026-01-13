@@ -38,6 +38,8 @@ endcapture -%}
 {% elsif youtube_id contains '?' %}{% assign youtube_id = youtube_id | split: '?' | first %}{% endif %}
 {%- elsif page.object_location contains 'mp3' -%}
 {% assign av = "mp3" %}
+{%- elsif page.object_location contains 'mp4' -%}
+{% assign av = "mp4" %}
 {%- elsif page.object_location contains 'soundcloud' -%}
 {% assign av = "soundcloud" %}
 {% assign soundcloud_id = page.object_location | split: '.com/' | last %}
