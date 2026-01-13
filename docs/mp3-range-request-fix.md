@@ -94,7 +94,7 @@ This test demonstrates that my Azure Blob, one that was uploaded recently using 
 
 ## Testing Digital Ocean Spaces
 
-To test DO I create a new folder in the library `Spaces` storage at https://cloud.digitalocean.com/spaces/digital-grinnell?path=Georgia-Dentel-AV-Testing%2F.  In that "space" I uploaded a copy of the Kit Wall .mp3 interview audio, namely `dg_1750784116.mp3` with a CDN endpoint of:  
+To test DO, I created a new folder in the library `Spaces` storage at https://cloud.digitalocean.com/spaces/digital-grinnell?path=Georgia-Dentel-AV-Testing%2F.  _Note: the `Georgia-Dentel-AV-Testing` folder was later renamed to just `Georgia-Dentel`._  In that "space" I uploaded a copy of the Kit Wall .mp3 interview audio, namely `dg_1750784116.mp3` with a CDN endpoint of:  
 
 https://digital-grinnell.nyc3.cdn.digitaloceanspaces.com/Georgia-Dentel-AV-Testing/dg_1750784116.mp3
 
