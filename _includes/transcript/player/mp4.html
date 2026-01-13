@@ -1,6 +1,6 @@
 <!-- cb: _includes/transcript/player/mp4.html -->
 <div id="player" class="ratio ratio-16x9">
-    <video id="video-player" class="w-100 iframe-player" controls preload="metadata">
+    <video id="video-player" class="w-100 iframe-player" {% if page.image_small %}poster="{{ page.image_small | relative_url }}" {% endif %}controls preload="metadata">
         <source src="{{page.object_location}}" type="video/mp4">
         Your browser does not support the video element.
     </video>
