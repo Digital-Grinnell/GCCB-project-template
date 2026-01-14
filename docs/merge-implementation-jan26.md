@@ -81,6 +81,33 @@ transcript-fields: bio;description;interview_date;location;interviewer;interview
 <video {% if page.image_small %}poster="{{ page.image_small | relative_url }}" {% endif %}>
 ```
 
+### 5. Video Timestamp Click-to-Seek ✓
+**Source:** Bug fix discovered during testing  
+**Files:** 
+- `_includes/transcript/timestamp/mp4.html` (new)
+- `_includes/transcript/item/transcript.html`
+
+**What Changed:**
+- Created mp4 timestamp include file (copied from mp3.html)
+- Added mp4 to the conditional check for rendering clickable timestamps
+- Modified timestamp button to use `timestampMP3()` for both mp3 and mp4
+- Changed tooltip text from "Jump video to..." to "Jump media to..." for accuracy
+
+**The Problem:**
+- Video transcripts displayed timestamps as plain text, not clickable links
+- Audio transcripts had working clickable timestamps
+
+**The Solution:**
+1. Created missing `_includes/transcript/timestamp/mp4.html` file
+2. Updated transcript rendering logic to include mp4 alongside mp3, youtube, and soundcloud
+3. Both mp3 and mp4 now use the same `timestampMP3()` function (works for all HTML5 media elements)
+
+**Code Changes:**
+```liquid
+{% if av contains "youtube" or av contains "mp3" or av contains "mp4" or av contains "soundcloud" %}
+  <button onclick="timestampMP3('{{- total_sec -}}');" ...>
+```
+
 ## Files Modified Summary
 
 1. `_includes/transcript/item/transcript-metadata.html`
@@ -93,10 +120,21 @@ transcript-fields: bio;description;interview_date;location;interviewer;interview
 3. `_includes/transcript/player/mp4.html`
    - Added poster image support
 
-4. `docs/merge-strategy-jan26.md` (new)
+4. `_includes/transcript/timestamp/mp4.html` (new)
+   - Timestamp link rendering for mp4 videos
+
+5.**Verify timestamp click-to-seek functionality** ✓
+- **Test timestamp tooltips show "Jump media to..."** ✓
+   - Added mp4 support to timestamp button rendering logic
+   - Changed tooltip text from "video" to "media"
+
+6. `objects/markdown/README.md`
+   - Fixed Liquid syntax warnings with {% raw %} tags
+
+7. `docs/merge-strategy-jan26.md` (new)
    - Comprehensive merge strategy document
 
-5. `docs/video-transcript-fix.md` (existing from earlier session)
+8. `docs/video-transcript-fix.md` (existing from earlier session)
    - Documentation of mp4 player fix
 
 ## Testing Recommendations
@@ -135,13 +173,22 @@ transcript-fields: bio;description;interview_date;location;interviewer;interview
 ### Theme Configuration
 Add to `_data/theme.yml` if not present:
 ```yaml
-transcript-fields: bio;description;interview_date;location;interviewer;interviewee;image
-```
+transcript-field6  
+New files: 3 (documentation + mp4 timestamp)
 
-### Metadata Fields
-Optional fields that enhance functionality:
-- `interview_date` - Displays as "Interview Date:" instead of "Date:"
-- `bio` - Enables View Bio button and modal
+**All features tested and working:**
+- ✅ Interview date display with fallback
+- ✅ Bio button and dropdown menu
+- ✅ PDF generation with smart logic
+- ✅ Video poster/cover images
+- ✅ MP4 video playback with transcripts
+- ✅ Clickable timestamps for both audio and video
+- ✅ Accurate "Jump media to..." tooltips
+
+Ready for:
+- Commit and push to remote
+- Additional merges from strategy document
+- Production deploymentbutton and modal
 - `image_small` - Used as video poster/cover image
 - `pdf` - Link to pre-generated PDF (otherwise generates on demand)
 
