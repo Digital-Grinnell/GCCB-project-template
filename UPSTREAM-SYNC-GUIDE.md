@@ -46,8 +46,8 @@ GitHub documents `git remote add upstream https://github.com/ORIGINAL-OWNER/ORIG
 ### 2. Create a safety branch
 
 ```bash
-git checkout <default-branch>
-git pull origin <default-branch>
+git checkout main
+git pull origin main
 git checkout -b backup/pre-upstream-sync-$(date +%Y%m%d)
 ```
 
@@ -64,9 +64,9 @@ Fetching stores upstream commits locally without changing your working tree, and
 ### 4. Inspect what will change
 
 ```bash
-git checkout <default-branch>
-git log --oneline --left-right --graph HEAD...upstream/<default-branch>
-git diff --stat HEAD..upstream/<default-branch>
+git checkout main
+git log --oneline --left-right --graph HEAD...upstream/main
+git diff --stat HEAD..upstream/main
 ```
 
 This step is not required by GitHub’s minimal workflow, but it is a good safety check before merging because it shows divergence and the rough size of the update.
@@ -74,10 +74,10 @@ This step is not required by GitHub’s minimal workflow, but it is a good safet
 ### 5. Merge upstream into the fork locally
 
 ```bash
-git merge upstream/<default-branch>
+git merge upstream/main
 ```
 
-GitHub documents this exact pattern—check out the local default branch and merge `upstream/<default-branch>`—to bring a fork into sync without losing local changes.[cite:1][cite:12]
+GitHub documents this exact pattern—check out the local default branch and merge `upstream/main`—to bring a fork into sync without losing local changes.[cite:1][cite:12]
 
 If there are conflicts:
 
@@ -100,7 +100,7 @@ Then run whatever local validation makes sense for this repo, such as a site bui
 ### 7. Push the updated fork
 
 ```bash
-git push origin <default-branch>
+git push origin main
 ```
 
 After the local merge is validated, pushing updates the fork on GitHub so it becomes the new source for the next stage.[cite:7][cite:9]
@@ -129,10 +129,10 @@ Using a distinct remote name avoids confusion with any existing `origin` or othe
 ### 2. Create a safety branch and integration branch
 
 ```bash
-git checkout <default-branch>
-git pull origin <default-branch>
+git checkout main
+git pull origin main
 git checkout -b backup/pre-template-sync-$(date +%Y%m%d)
-git checkout <default-branch>
+git checkout main
 git checkout -b work/merge-template-source-$(date +%Y%m%d)
 ```
 
@@ -141,8 +141,8 @@ Doing the merge work on a dedicated branch gives you a clean review path and mak
 ### 3. Review divergence
 
 ```bash
-git log --oneline --left-right --graph HEAD...template-source/<default-branch>
-git diff --stat HEAD..template-source/<default-branch>
+git log --oneline --left-right --graph HEAD...template-source/main
+git diff --stat HEAD..template-source/main
 ```
 
 This shows how far the project template has drifted from the fork and where conflicts are most likely.
@@ -150,7 +150,7 @@ This shows how far the project template has drifted from the fork and where conf
 ### 4. Merge the updated fork
 
 ```bash
-git merge template-source/<default-branch>
+git merge --allow-unrelated-histories template-source/main
 ```
 
 This is the same fetch-and-merge model GitHub recommends for upstream synchronization, applied here to a second repository relationship.[cite:1][cite:12]
@@ -186,7 +186,7 @@ Then review the final delta:
 
 ```bash
 git status
-git diff <default-branch>..HEAD --stat
+git diff main..HEAD --stat
 git log --oneline --decorate -10
 ```
 
@@ -195,9 +195,9 @@ git log --oneline --decorate -10
 If the merge was done on a work branch and everything looks good:
 
 ```bash
-git checkout <default-branch>
+git checkout main
 git merge --no-ff work/merge-template-source-$(date +%Y%m%d)
-git push origin <default-branch>
+git push origin main
 ```
 
 Using a dedicated work branch keeps the reviewable integration commit separate from routine work.
@@ -214,23 +214,23 @@ This staged approach reduces the chance of making inconsistent fixes across rela
 
 ## Commands checklist
 
-Replace `<default-branch>` with the actual branch name, usually `main`.
+Replace `main` with the actual branch name, usually `main`.
 
 ### In `Digital-Grinnell/collectionbuilder-csv`
 
 ```bash
 git remote -v
 git remote add upstream https://github.com/CollectionBuilder/collectionbuilder-csv.git   # if needed
-git checkout <default-branch>
-git pull origin <default-branch>
+git checkout main
+git pull origin main
 git checkout -b backup/pre-upstream-sync-YYYYMMDD
 git fetch upstream
-git checkout <default-branch>
-git log --oneline --left-right --graph HEAD...upstream/<default-branch>
-git diff --stat HEAD..upstream/<default-branch>
-git merge upstream/<default-branch>
+git checkout main
+git log --oneline --left-right --graph HEAD...upstream/main
+git diff --stat HEAD..upstream/main
+git merge upstream/main
 # resolve conflicts, test
-git push origin <default-branch>
+git push origin main
 ```
 
 ### In `Digital-Grinnell/GCCB-project-template`
@@ -239,17 +239,17 @@ git push origin <default-branch>
 git remote -v
 git remote add template-source https://github.com/Digital-Grinnell/collectionbuilder-csv.git   # if needed
 git fetch template-source
-git checkout <default-branch>
-git pull origin <default-branch>
+git checkout main
+git pull origin main
 git checkout -b backup/pre-template-sync-YYYYMMDD
 git checkout -b work/merge-template-source-YYYYMMDD
-git log --oneline --left-right --graph HEAD...template-source/<default-branch>
-git diff --stat HEAD..template-source/<default-branch>
-git merge template-source/<default-branch>
+git log --oneline --left-right --graph HEAD...template-source/main
+git diff --stat HEAD..template-source/main
+git merge template-source/main
 # resolve conflicts, test
-git checkout <default-branch>
+git checkout main
 git merge --no-ff work/merge-template-source-YYYYMMDD
-git push origin <default-branch>
+git push origin main
 ```
 
 ## Notes specific to this setup
